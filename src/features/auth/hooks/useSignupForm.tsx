@@ -32,7 +32,7 @@ const useSignupForm = () => {
     }
   };
 
-  const onSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setHasSubmitted(true);
     const result = validate(signupForm);
@@ -40,7 +40,7 @@ const useSignupForm = () => {
       return;
     }
     const { email, username, password } = result.data;
-    signupMutation({ email, password, username });
+    await signupMutation({ email, password, username });
   };
 
   return {

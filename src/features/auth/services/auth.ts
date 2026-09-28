@@ -1,5 +1,6 @@
 import axios from "@/config/axios.config";
 import { isAxiosError } from "axios";
+import type { SigninResponse, SignupResponse } from "../types/types";
 
 export const createUser = async ({
   username,
@@ -9,7 +10,7 @@ export const createUser = async ({
   username: string;
   email: string;
   password: string;
-}) => {
+}): Promise<SignupResponse> => {
   try {
     const response = await axios.post("/users/signup", {
       username,
@@ -22,10 +23,17 @@ export const createUser = async ({
     if (isAxiosError(error) && error.response) {
       throw error.response.data;
     }
+    throw error;
   }
 };
 
-export const userSignIn = async ({ email, password }: { email: string; password: string }) => {
+export const userSignIn = async ({
+  email,
+  password,
+}: {
+  email: string;
+  password: string;
+}): Promise<SigninResponse> => {
   try {
     const response = await axios.post("/users/signin", {
       email,
@@ -37,5 +45,6 @@ export const userSignIn = async ({ email, password }: { email: string; password:
     if (isAxiosError(error) && error.response) {
       throw error.response.data;
     }
+    throw error;
   }
 };

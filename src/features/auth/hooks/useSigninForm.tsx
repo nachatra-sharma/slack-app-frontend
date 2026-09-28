@@ -27,7 +27,7 @@ const useSigninForm = () => {
     }
   };
 
-  const onSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setHasSubmitted(true);
     const result = validate(signinForm);
@@ -35,7 +35,7 @@ const useSigninForm = () => {
       return;
     }
     const { email, password } = result.data;
-    signinMutation({ email, password });
+    await signinMutation({ email, password });
   };
 
   return {

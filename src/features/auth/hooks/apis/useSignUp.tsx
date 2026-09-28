@@ -1,7 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
 import { createUser } from "../../services/auth";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export const useSignUp = () => {
+  const navigate = useNavigate();
   const {
     isPending,
     isSuccess,
@@ -11,10 +14,15 @@ export const useSignUp = () => {
   } = useMutation({
     mutationFn: createUser,
     onSuccess: (data) => {
-      console.log("User created successfully: ", data);
+      if (data.success) {
+        toast.success("User created successfully");
+        navigate("/signin");
+      } else {
+        toast.error(data.message);
+      }
     },
-    onError: (error) => {
-      console.log("Something went wrong while creating user: ", error);
+    onError: () => {
+      toast.error("Something went wrong. Please try again later.");
     },
   });
 
