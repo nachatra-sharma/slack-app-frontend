@@ -1,16 +1,17 @@
 import SignupCard from "@/features/auth/components/signupCard";
-import { useState } from "react";
+import useSignupForm from "../hooks/useSignupForm";
 
 const Signup = () => {
-  const [signupForm, setSignupForm] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    username: "",
-  });
+  const { signupForm, onChange, onSubmit, error, isPending } = useSignupForm();
   return (
     <div className="bg-primary-brand flex min-h-screen min-w-screen items-center justify-center">
-      <SignupCard signupForm={signupForm} setSignupForm={setSignupForm} />
+      <SignupCard
+        signupForm={signupForm}
+        onChange={onChange}
+        onSubmit={onSubmit}
+        error={error}
+        isPending={isPending}
+      />
     </div>
   );
 };
