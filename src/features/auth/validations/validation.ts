@@ -30,3 +30,22 @@ export const signupFormSchema = z
   });
 
 export type signupFormData = z.infer<typeof signupFormSchema>;
+
+export const loginFormSchema = z.object({
+  email: z
+    .string()
+    .trim()
+    .min(1, { error: "Email is required" })
+    .pipe(
+      z.email({
+        error: "Enter a valid email address",
+      }),
+    ),
+  password: z
+    .string()
+    .min(1, { error: "Password is required" })
+    .min(7, { error: "Password must be at least 7 characters" })
+    .max(14, { error: "Password must be at most 14 characters" }),
+});
+
+export type loginFormData = z.infer<typeof loginFormSchema>;

@@ -1,14 +1,17 @@
-import { useState } from "react";
 import SigninCard from "../components/signinCard";
+import useSigninForm from "../hooks/useSigninForm";
 
 const Signin = () => {
-  const [signinForm, setSigninForm] = useState({
-    email: "",
-    password: "",
-  });
+  const { error, onSubmit, onChange, isPending, signinForm } = useSigninForm();
   return (
     <div className="bg-primary-brand flex min-h-screen min-w-screen items-center justify-center">
-      <SigninCard signinForm={signinForm} setSigninForm={setSigninForm} />
+      <SigninCard
+        error={error}
+        onSubmit={onSubmit}
+        onChange={onChange}
+        isPending={isPending}
+        signinForm={signinForm}
+      />
     </div>
   );
 };
