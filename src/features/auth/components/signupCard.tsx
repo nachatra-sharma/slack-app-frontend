@@ -2,17 +2,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import type { signupFormType } from "../types/types";
 
-const SignupCard = () => {
-  const [signupForm, setSignupForm] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    username: "",
-  });
-
+const SignupCard = ({
+  signupForm,
+  setSignupForm,
+}: {
+  signupForm: signupFormType;
+  setSignupForm: React.Dispatch<React.SetStateAction<signupFormType>>;
+}) => {
   return (
     <Card className="h-auto w-1/3">
       <CardHeader>

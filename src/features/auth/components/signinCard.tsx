@@ -2,15 +2,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import type { SigninFormType } from "../types/types";
 
-const SigninCard = () => {
-  const [signinForm, setSigninForm] = useState({
-    email: "",
-    password: "",
-  });
-
+const SigninCard = ({
+  signinForm,
+  setSigninForm,
+}: {
+  signinForm: SigninFormType;
+  setSigninForm: React.Dispatch<React.SetStateAction<SigninFormType>>;
+}) => {
   return (
     <Card>
       <CardHeader>
