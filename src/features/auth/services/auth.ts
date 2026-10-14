@@ -12,11 +12,17 @@ export const createUser = async ({
   password: string;
 }): Promise<SignupResponse> => {
   try {
-    const response = await axios.post("/users/signup", {
-      username,
-      email,
-      password,
-    });
+    const response = await axios.post(
+      "/users/signup",
+      {
+        username,
+        email,
+        password,
+      },
+      {
+        skipAuthRedirect: true,
+      },
+    );
     return response.data;
   } catch (error) {
     console.log("error while creating user: ", error);
@@ -35,10 +41,16 @@ export const userSignIn = async ({
   password: string;
 }): Promise<SigninResponse> => {
   try {
-    const response = await axios.post("/users/signin", {
-      email,
-      password,
-    });
+    const response = await axios.post(
+      "/users/signin",
+      {
+        email,
+        password,
+      },
+      {
+        skipAuthRedirect: true,
+      },
+    );
     return response.data;
   } catch (error) {
     console.log("error while user log in", error);
